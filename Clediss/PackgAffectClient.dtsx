@@ -1,0 +1,1201 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/10/2020 4:27:06 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="NKHAMASSI"
+  DTS:CreatorName="POULINAGH\08739246"
+  DTS:DTSID="{0442420F-7DDA-42E6-8590-C8D6325BAA61}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="PackgAffectClient"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{3F7A36CA-4ABB-4CA1-8B7C-4ACDB32608C2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Mysql_Clediss]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{1767D37B-7742-4022-B2BC-E8432B7CD5B7}"
+      DTS:ObjectName="Mysql_Clediss">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Dsn=mysql;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NKHAMASSI]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A7EA9BA4-6F76-4606-BEEF-F87EF6BB8C81}"
+      DTS:ObjectName="NKHAMASSI">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=NKHAMASSI;Initial Catalog=STGCLEDISS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4032D0E5-A386-4BAD-8876-1ACEC9075CFA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="rowCnt">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tâche de flux de données"
+      DTS:CreationName="{5918251B-2970-45A4-AB5F-01C3C588FE5A}"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{C57E5B13-7953-401C-A2BD-8EEE78FD0A30}"
+      DTS:ExecutableType="{5918251B-2970-45A4-AB5F-01C3C588FE5A}"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tâche de flux de données">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tâche de flux de données\affectation_clients"
+              componentClassID="{A77F5655-A006-443A-9B7E-90B6BD55CB84}"
+              contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1"
+              description="ODBC Source"
+              name="affectation_clients"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName">"dist_capbon"."activites"</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand">select *,'dist_capbon' as district from dist_capbon.affectation_clients
+union all
+select *,'dist_centre' as district from dist_centre.affectation_clients
+union all
+select *,'dist_djendouba' as district from dist_djendouba.affectation_clients
+union all
+select *,'dist_elkef' as district from dist_elkef.affectation_clients
+union all
+select *,'dist_gabes' as district from dist_gabes.affectation_clients
+union all
+select *,'dist_kairouan' as district from dist_kairouan.affectation_clients
+union all
+select *,'dist_mahdia' as district from dist_mahdia.affectation_clients
+union all
+select *,'dist_nord' as district from dist_nord.affectation_clients
+union all
+select *,'dist_sud' as district from dist_sud.affectation_clients
+union all
+select *,'dist_tunis' as district from dist_tunis.affectation_clients;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows fetched per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for fetching data."
+                  expressionType="Notify"
+                  name="FetchMethod"
+                  typeConverter="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tâche de flux de données\affectation_clients.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Mysql_Clediss]"
+                  connectionManagerRefId="Package.ConnectionManagers[Mysql_Clediss]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="ODBC Source Output"
+                  truncationRowDisposition="IgnoreFailure">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[id]"
+                      dataType="ui4"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[id]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[promotion_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[promotion_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[promotion_code]"
+                      name="promotion_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[gratuite_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[gratuite_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[gratuite_code]"
+                      name="gratuite_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[fidelite_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[fidelite_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[fidelite_code]"
+                      name="fidelite_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[categorie_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[categorie_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[categorie_code]"
+                      name="categorie_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[region_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[region_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[region_code]"
+                      name="region_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[zone_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[zone_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[zone_code]"
+                      name="zone_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[type]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[type]"
+                      length="9"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[type]"
+                      name="type" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[deleted_at]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[deleted_at]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[deleted_at]"
+                      name="deleted_at" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[created_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Insert"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[created_at]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[created_at]"
+                      name="created_at" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Insert"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[updated_at]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[updated_at]"
+                      name="updated_at" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[district]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[district]"
+                      length="14"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[district]"
+                      name="district" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[id]"
+                      dataType="ui4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[promotion_code]"
+                      dataType="wstr"
+                      length="255"
+                      name="promotion_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[gratuite_code]"
+                      dataType="wstr"
+                      length="255"
+                      name="gratuite_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[fidelite_code]"
+                      dataType="wstr"
+                      length="255"
+                      name="fidelite_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[categorie_code]"
+                      dataType="wstr"
+                      length="255"
+                      name="categorie_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[region_code]"
+                      dataType="wstr"
+                      length="255"
+                      name="region_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[zone_code]"
+                      dataType="wstr"
+                      length="255"
+                      name="zone_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="9"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[deleted_at]"
+                      dataType="dbTimeStamp"
+                      name="deleted_at" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[created_at]"
+                      dataType="dbTimeStamp"
+                      name="created_at" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[district]"
+                      dataType="wstr"
+                      length="14"
+                      name="district" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[id]"
+                      dataType="ui4"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[id]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[promotion_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[promotion_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[promotion_code]"
+                      name="promotion_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[gratuite_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[gratuite_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[gratuite_code]"
+                      name="gratuite_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[fidelite_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[fidelite_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[fidelite_code]"
+                      name="fidelite_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[categorie_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[categorie_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[categorie_code]"
+                      name="categorie_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[region_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[region_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[region_code]"
+                      name="region_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[zone_code]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[zone_code]"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[zone_code]"
+                      name="zone_code" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[type]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[type]"
+                      length="9"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[type]"
+                      name="type" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[deleted_at]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[deleted_at]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[deleted_at]"
+                      name="deleted_at" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[district]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[district]"
+                      length="14"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[district]"
+                      name="district" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[created_at]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[created_at]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[created_at]"
+                      name="created_at" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].ExternalColumns[updated_at]"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Error Output].Columns[updated_at]"
+                      name="updated_at" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tâche de flux de données\Conversion de données 1"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[id]"
+                      cachedDataType="ui4"
+                      cachedName="id"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[promotion_code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="promotion_code"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[promotion_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[gratuite_code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="gratuite_code"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[gratuite_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[fidelite_code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="fidelite_code"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[fidelite_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[categorie_code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="categorie_code"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[categorie_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[region_code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="region_code"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[region_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[zone_code]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="zone_code"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[zone_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[type]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="type"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[type]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[deleted_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="deleted_at"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[deleted_at]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[created_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="created_at"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[created_at]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[updated_at]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[district]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="district"
+                      lineageId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[district]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of id]"
+                      name="Copy of id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of promotion_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of promotion_code]"
+                      name="Copy of promotion_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[promotion_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of gratuite_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of gratuite_code]"
+                      name="Copy of gratuite_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[gratuite_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of fidelite_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of fidelite_code]"
+                      name="Copy of fidelite_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[fidelite_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of categorie_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of categorie_code]"
+                      name="Copy of categorie_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[categorie_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of region_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of region_code]"
+                      name="Copy of region_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[region_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of zone_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of zone_code]"
+                      name="Copy of zone_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[zone_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of type]"
+                      name="Copy of type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[type]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of deleted_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of deleted_at]"
+                      name="Copy of deleted_at"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[deleted_at]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of created_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of created_at]"
+                      name="Copy of created_at"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[created_at]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of updated_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of updated_at]"
+                      name="Copy of updated_at"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[updated_at]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of District]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="14"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of District]"
+                      name="Copy of District"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output].Columns[district]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tâche de flux de données\Destination OLE DB 1"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande. Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[affectation_clients]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données de caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données. Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tâche de flux de données\Destination OLE DB 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NKHAMASSI]"
+                  connectionManagerRefId="Package.ConnectionManagers[NKHAMASSI]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of id]"
+                      cachedDataType="i8"
+                      cachedName="Copy of id"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[id]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of id]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of promotion_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of promotion_code"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[promotion_code]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of promotion_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of gratuite_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of gratuite_code"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[gratuite_code]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of gratuite_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of fidelite_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of fidelite_code"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[fidelite_code]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of fidelite_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of categorie_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of categorie_code"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[categorie_code]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of categorie_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of region_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of region_code"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[region_code]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of region_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of zone_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of zone_code"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[zone_code]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of zone_code]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="Copy of type"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[type]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of type]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of created_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Copy of created_at"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[created_at]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of created_at]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of deleted_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Copy of deleted_at"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[deleted_at]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of deleted_at]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Copy of updated_at"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[updated_at]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of updated_at]" />
+                    <inputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].Columns[Copy of District]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="Copy of District"
+                      externalMetadataColumnId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[district]"
+                      lineageId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of District]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[promotion_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="promotion_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[gratuite_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="gratuite_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[fidelite_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="fidelite_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[categorie_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="categorie_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[region_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="region_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[zone_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="zone_code" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[deleted_at]"
+                      dataType="dbTimeStamp2"
+                      name="deleted_at" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[created_at]"
+                      dataType="dbTimeStamp2"
+                      name="created_at" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp2"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB].ExternalColumns[district]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="district" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\Destination OLE DB 1.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\Destination OLE DB 1.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tâche de flux de données\Destination OLE DB 1.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tâche de flux de données\Destination OLE DB 1.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tâche de flux de données\Nombre de lignes 1"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Nombre de lignes;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Compte les lignes à mesure qu'elles franchissent un flux de données. Par exemple, utilisez le nombre de lignes traitées pour déterminer s'il faut ou non effectuer les opérations de nettoyage, ou mettez à jour le texte dans un message électronique pour communiquer l'état du traitement."
+              name="Nombre de lignes 1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nombre de lignes."
+                  name="VariableName">User::rowCnt</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tâche de flux de données\Nombre de lignes 1.Inputs[Nombre de lignes entrée 1]"
+                  hasSideEffects="true"
+                  name="Nombre de lignes entrée 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tâche de flux de données\Nombre de lignes 1.Outputs[Nombre de lignes sortie 1]"
+                  name="Nombre de lignes sortie 1"
+                  synchronousInputId="Package\Tâche de flux de données\Nombre de lignes 1.Inputs[Nombre de lignes entrée 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tâche de flux de données.Paths[Nombre de lignes sortie 1]"
+              endId="Package\Tâche de flux de données\Destination OLE DB 1.Inputs[Entrée de destination OLE DB]"
+              name="Nombre de lignes sortie 1"
+              startId="Package\Tâche de flux de données\Nombre de lignes 1.Outputs[Nombre de lignes sortie 1]" />
+            <path
+              refId="Package\Tâche de flux de données.Paths[ODBC Source Output]"
+              endId="Package\Tâche de flux de données\Conversion de données 1.Inputs[Entrée de conversion de données]"
+              name="ODBC Source Output"
+              startId="Package\Tâche de flux de données\affectation_clients.Outputs[ODBC Source Output]" />
+            <path
+              refId="Package\Tâche de flux de données.Paths[Sortie de conversion de données]"
+              endId="Package\Tâche de flux de données\Nombre de lignes 1.Inputs[Nombre de lignes entrée 1]"
+              name="Sortie de conversion de données"
+              startId="Package\Tâche de flux de données\Conversion de données 1.Outputs[Sortie de conversion de données]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\Tâche de flux de données"
+          TopLeft="87.7857156870317,129.688237035811" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tâche de flux de données">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Tâche de flux de données\Destination OLE DB 1"
+          TopLeft="269.828571623199,407.189920277414" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Tâche de flux de données\Nombre de lignes 1"
+          TopLeft="266.979592026149,303.37479277303" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Tâche de flux de données\affectation_clients"
+          TopLeft="267.179592296195,78.4" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Tâche de flux de données\Conversion de données 1"
+          TopLeft="257.6,219.072270580312" />
+        <EdgeLayout
+          Id="Package\Tâche de flux de données.Paths[ODBC Source Output]"
+          TopLeft="352.389796148098,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,99.072270580312"
+              Start="0,0"
+              End="0,91.572270580312">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,91.572270580312" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tâche de flux de données.Paths[Sortie de conversion de données]"
+          TopLeft="353.889796013075,260.672270580312">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.702522192718"
+              Start="0,0"
+              End="0,35.202522192718">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.202522192718" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tâche de flux de données.Paths[Nombre de lignes sortie 1]"
+          TopLeft="355.604081824674,344.97479277303">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.2151275043839"
+              Start="0,0"
+              End="0,54.7151275043839">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.7151275043839" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
