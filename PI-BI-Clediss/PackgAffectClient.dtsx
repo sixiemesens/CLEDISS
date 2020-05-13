@@ -6,30 +6,30 @@
   DTS:CreatorComputerName="NKHAMASSI"
   DTS:CreationDate="5/10/2020 4:27:06 PM"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{60775D46-0AF8-415F-A60B-418C702367ED}"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{347EB7ED-55E3-49FC-A772-28E6D89DA70A}"
   DTS:LastModifiedProductVersion="11.0.2100.60"
   DTS:LocaleID="1036"
   DTS:ObjectName="PackgAffectClient"
-  DTS:DTSID="{0442420F-7DDA-42E6-8590-C8D6325BAA61}"
+  DTS:DTSID="{7344AFAF-77F1-4DF7-BE3C-3CB7B3F4A9DA}"
   DTS:CreationName="SSIS.Package.3">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ATEF-PC]"
-      DTS:ObjectName="ATEF-PC"
-      DTS:DTSID="{A058D883-DAFB-4D08-8A0E-950D7CD9BBAD}"
+      DTS:refId="Package.ConnectionManagers[BILEL]"
+      DTS:ObjectName="BILEL"
+      DTS:DTSID="{D0ABBFBF-0E4B-42D3-BC14-FF6DB675AC91}"
       DTS:CreationName="OLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=ATEF-PC;Initial Catalog=STGCLEDISS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LAPTOP-S3COPKLP;Initial Catalog=STGCLEDISS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[clediss]"
-      DTS:ObjectName="clediss"
-      DTS:DTSID="{1D7CDF50-795C-45CC-BCF6-9133EFD77394}"
+      DTS:refId="Package.ConnectionManagers[Mysql_Clediss]"
+      DTS:ObjectName="Mysql_Clediss"
+      DTS:DTSID="{D4F3DB25-D339-4B54-8668-DFFB3B202B11}"
       DTS:CreationName="ODBC">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -42,7 +42,7 @@
       DTS:Namespace="User"
       DTS:IncludeInDebugDump="6789"
       DTS:ObjectName="rowCnt"
-      DTS:DTSID="{4032D0E5-A386-4BAD-8876-1ACEC9075CFA}"
+      DTS:DTSID="{65B90FF0-3DF9-47F1-BFD5-777489EFE15D}"
       DTS:CreationName="">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
@@ -54,7 +54,7 @@
       DTS:ExecutableType="{5918251B-2970-45A4-AB5F-01C3C588FE5A}"
       DTS:LocaleID="-1"
       DTS:ObjectName="Tâche de flux de données"
-      DTS:DTSID="{C57E5B13-7953-401C-A2BD-8EEE78FD0A30}"
+      DTS:DTSID="{2A25F8F5-859C-4632-BE99-B02EBDB3C1C4}"
       DTS:Description="Tâche de flux de données"
       DTS:CreationName="{5918251B-2970-45A4-AB5F-01C3C588FE5A}">
       <DTS:Variables />
@@ -153,8 +153,8 @@ select *,'dist_tunis' as district from dist_tunis.affectation_clients;</property
                   refId="Package\Tâche de flux de données\affectation_clients.Connections[ODBCConnection]"
                   name="ODBCConnection"
                   description="The ODBC runtime connection"
-                  connectionManagerID="Package.ConnectionManagers[clediss]"
-                  connectionManagerRefId="Package.ConnectionManagers[clediss]" />
+                  connectionManagerID="Package.ConnectionManagers[Mysql_Clediss]"
+                  connectionManagerRefId="Package.ConnectionManagers[Mysql_Clediss]" />
               </connections>
               <outputs>
                 <output
@@ -843,8 +843,8 @@ select *,'dist_tunis' as district from dist_tunis.affectation_clients;</property
                   refId="Package\Tâche de flux de données\Destination OLE DB 1.Connections[OleDbConnection]"
                   name="OleDbConnection"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
-                  connectionManagerID="Package.ConnectionManagers[ATEF-PC]"
-                  connectionManagerRefId="Package.ConnectionManagers[ATEF-PC]" />
+                  connectionManagerID="Package.ConnectionManagers[BILEL]"
+                  connectionManagerRefId="Package.ConnectionManagers[BILEL]" />
               </connections>
               <inputs>
                 <input
@@ -1101,7 +1101,7 @@ select *,'dist_tunis' as district from dist_tunis.affectation_clients;</property
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="200,42"
+          Size="200,41.6"
           Id="Package\Tâche de flux de données"
           TopLeft="87.7857156870317,129.688237035811" />
       </GraphLayout>
@@ -1113,19 +1113,19 @@ select *,'dist_tunis' as district from dist_tunis.affectation_clients;</property
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="197,42"
+          Size="196.8,41.6"
           Id="Package\Tâche de flux de données\Conversion de données 1"
           TopLeft="257.6,219.072270580312" />
         <NodeLayout
-          Size="179,42"
+          Size="179.2,41.6"
           Id="Package\Tâche de flux de données\Destination OLE DB 1"
           TopLeft="269.828571623199,407.189920277414" />
         <NodeLayout
-          Size="170,42"
+          Size="169.6,41.6"
           Id="Package\Tâche de flux de données\Nombre de lignes 1"
           TopLeft="266.979592026149,303.37479277303" />
         <NodeLayout
-          Size="163,42"
+          Size="163.2,41.6"
           Id="Package\Tâche de flux de données\affectation_clients"
           TopLeft="267.179592296195,78.4" />
         <EdgeLayout
@@ -1203,6 +1203,16 @@ select *,'dist_tunis' as district from dist_tunis.affectation_clients;</property
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tâche de flux de données\affectation_clients">
+    <Properties>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value

@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Clediss", "Clediss\Clediss.dtproj", "{C39571AA-D9A7-4CF1-A3E2-35D8AA4F1E99}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "PI-BI-Clediss", "PI-BI-Clediss\PI-BI-Clediss.dtproj", "{B7E258CE-AE2B-4E89-948E-F0A532B9B635}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C39571AA-D9A7-4CF1-A3E2-35D8AA4F1E99}.Development|Default.ActiveCfg = Development
-		{C39571AA-D9A7-4CF1-A3E2-35D8AA4F1E99}.Development|Default.Build.0 = Development
+		{B7E258CE-AE2B-4E89-948E-F0A532B9B635}.Development|Default.ActiveCfg = Development
+		{B7E258CE-AE2B-4E89-948E-F0A532B9B635}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
